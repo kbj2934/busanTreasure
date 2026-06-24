@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>부산 보물 탐험대 · 규칙서 v6</title>
+<style>
+:root {
+  --era-A: #C0473C;
+  --era-B: #2E8B8B;
+  --era-C: #C28A2B;
+  --era-D: #3E6FA3;
+  --era-E: #6C58A4;
+  --ink: #1A1A1A;
+  --ink-soft: #555;
+  --bg: #FBF8F1;
+  --paper: #FFFFFF;
+  --line: #E5DFD0;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans KR', 'Noto Sans CJK KR', 'Malgun Gothic', sans-serif;
+  background: var(--bg); color: var(--ink); margin: 0; padding: 0;
+  line-height: 1.65;
+}
+.container { max-width: 980px; margin: 0 auto; padding: 24px 28px 80px; }
+
+header.cover {
+  background: linear-gradient(135deg, var(--era-A) 0%, var(--era-C) 35%, var(--era-D) 70%, var(--era-E) 100%);
+  color: white; padding: 56px 28px 48px; text-align: center; border-radius: 0 0 32px 32px;
+  margin-bottom: 36px; position: relative;
+}
+header.cover .badge {
+  display: inline-block; background: rgba(255,255,255,0.22); padding: 6px 18px;
+  border-radius: 999px; font-size: 14px; font-weight: 600; letter-spacing: 1px;
+}
+header.cover h1 { font-size: 54px; margin: 14px 0 6px; font-weight: 900; letter-spacing: -1px; }
+header.cover .sub { font-size: 18px; opacity: 0.92; }
+header.cover .meta {
+  margin-top: 28px; display: inline-flex; gap: 24px;
+  background: rgba(0,0,0,0.18); padding: 12px 24px; border-radius: 12px; font-size: 15px;
+}
+header.cover .meta span { display: inline-flex; align-items: center; gap: 6px; }
+
+section { background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+  padding: 28px 32px; margin-bottom: 24px; }
+h2 { font-size: 28px; margin: 0 0 18px; padding-bottom: 12px;
+  border-bottom: 3px solid var(--era-A); display: flex; align-items: center; gap: 12px; }
+h2 .num {
+  background: var(--era-A); color: white; width: 38px; height: 38px;
+  border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 18px;
+}
+h3 { font-size: 22px; margin: 22px 0 12px; }
+p { margin: 0 0 12px; }
+.lead { font-size: 17px; color: var(--ink-soft); }
+
+.kpi-grid { display: flex; gap: 14px; margin: 18px 0; }
+.kpi { background: #F6F1E4; border-radius: 12px; padding: 18px; text-align: center; flex: 1 1 0; min-width: 0; }
+.kpi .v { font-size: 30px; font-weight: 900; color: var(--era-D); display: block; }
+.kpi .l { font-size: 13px; color: var(--ink-soft); }
+
+table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }
+th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { background: #F6F1E4; font-weight: 700; }
+td.count { text-align: center; font-weight: 800; color: var(--era-D); width: 70px; }
+
+.era-pill {
+  display: inline-block; color: white; padding: 4px 14px; border-radius: 999px;
+  font-size: 13px; font-weight: 700;
+}
+
+.heritage-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.heritage {
+  background: #FAFAFA; border-left: 5px solid; border-radius: 0 10px 10px 0;
+  padding: 10px 14px; display: flex; gap: 12px; align-items: center;
+  flex: 0 0 calc(50% - 6px); box-sizing: border-box;
+}
+.h-num {
+  color: white; font-weight: 900; padding: 6px 10px; border-radius: 8px; font-size: 14px;
+  min-width: 34px; text-align: center;
+}
+.h-info h4 { margin: 0; font-size: 15px; }
+.h-info p { margin: 2px 0 0; font-size: 13px; color: var(--ink-soft); }
+
+ol.steps { counter-reset: step; list-style: none; padding: 0; }
+ol.steps li {
+  counter-increment: step; position: relative; padding-left: 56px; margin-bottom: 14px;
+}
+ol.steps li::before {
+  content: counter(step); position: absolute; left: 0; top: 0;
+  background: var(--era-C); color: white; width: 38px; height: 38px;
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 16px;
+}
+
+.score-table { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; margin: 14px 0; }
+.score-table .label { padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.score-table .pts { font-weight: 800; color: var(--era-D); padding: 8px 0; border-bottom: 1px dashed var(--line); text-align: right; }
+
+.specials-grid { display: flex; flex-wrap: wrap; gap: 14px; }
+.special-card { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; flex: 0 0 calc(50% - 7px); box-sizing: border-box; }
+.sc-head { color: white; padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+.sc-num { background: rgba(255,255,255,0.25); padding: 3px 10px; border-radius: 6px; font-weight: 800; font-size: 14px; }
+.sc-name { font-weight: 800; font-size: 17px; flex: 1; }
+.sc-qty { background: rgba(0,0,0,0.18); padding: 3px 10px; border-radius: 999px; font-size: 12px; }
+.sc-body { padding: 14px 16px; font-size: 15px; color: var(--ink-soft); }
+
+.tip-box {
+  background: linear-gradient(90deg, #FFF6E0 0%, #FFFBEF 100%);
+  border-left: 4px solid var(--era-C); padding: 14px 18px; border-radius: 8px; margin: 12px 0;
+}
+.tip-box strong { color: var(--era-C); }
+
+footer {
+  text-align: center; color: var(--ink-soft); font-size: 13px; margin-top: 48px;
+  padding-top: 20px; border-top: 1px solid var(--line);
+}
+
+@media print {
+  body { background: white; }
+  section { break-inside: avoid; }
+}
+@media (max-width: 720px) {
+  .kpi-grid { flex-wrap: wrap; }
+  .kpi { flex: 0 0 calc(50% - 7px); }
+  .heritage, .special-card { flex: 0 0 100%; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="cover">
+  <div class="badge">초등 4학년 사회과 · 보드게임 규칙서</div>
+  <h1>부산 보물 탐험대</h1>
+  <div class="sub">부산의 유산을 찾아 떠나요!</div>
+  <div class="meta">
+    <span>🎴 카드 48장</span>
+    <span>👥 2~4인</span>
+    <span>⏱ 20~30분</span>
+    <span>🎯 10~11세</span>
+    <span>📦 v6</span>
+  </div>
+</header>
+
+<section>
+  <h2><span class="num">1</span>게임 소개</h2>
+  <p class="lead">부산의 대표 문화유산 22개를 카드로 만나며 즐기는 짝 맞추기(메모리) 보드게임이에요. 카드를 뒤집어 같은 유산의 짝을 찾고, 시대별로 모아 점수를 얻어요. 놀이하면서 자연스럽게 부산의 역사와 오늘을 배워요.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi"><span class="v">48</span><span class="l">전체 카드</span></div>
+    <div class="kpi"><span class="v">22</span><span class="l">유산 종류</span></div>
+    <div class="kpi"><span class="v">5</span><span class="l">시대 색</span></div>
+    <div class="kpi"><span class="v">4</span><span class="l">특수 카드</span></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">2</span>구성품 (카드 48장)</h2>
+  <table>
+    <thead><tr><th>구성</th><th>수량</th><th>설명</th></tr></thead>
+    <tbody>
+      <tr><td><strong>유산 카드</strong></td><td class="count">44장</td><td>22종 × 각 2장 (짝)</td></tr>
+      <tr><td><strong>특수 카드</strong></td><td class="count">4장</td><td>4종 × 각 1장</td></tr>
+      <tr><td><strong>합계</strong></td><td class="count">48장</td><td>모든 카드 뒷면은 동일한 보물지도 디자인</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">3</span>5색으로 나누는 시대</h2>
+  <p>카드 색깔만 보아도 어느 시대 유산인지 알 수 있어요.</p>
+  <table>
+    <thead><tr><th>시대 (색깔)</th><th>개수</th><th>유산</th></tr></thead>
+    <tbody>
+        <tr>
+          <td><span class="era-pill" style="background:#C0473C">선사·가야</span><br><small>오래된 옛날</small></td>
+          <td class="count">3개</td>
+          <td>01 동삼동 패총 · 02 복천동 고분군 · 03 연산동 고분군</td>
+        </tr>
+        <tr>
+          <td><span class="era-pill" style="background:#2E8B8B">통일신라·고려</span><br><small>삼국 통일 이후</small></td>
+          <td class="count">2개</td>
+          <td>04 범어사 · 05 만덕사지</td>
+        </tr>
+        <tr>
+          <td><span class="era-pill" style="background:#C28A2B">조선</span><br><small>임진왜란 시대</small></td>
+          <td class="count">4개</td>
+          <td>06 동래읍성 · 07 금정산성 · 08 충렬사 · 09 부산진성</td>
+        </tr>
+        <tr>
+          <td><span class="era-pill" style="background:#3E6FA3">근대·전쟁</span><br><small>6·25 전쟁 시대</small></td>
+          <td class="count">8개</td>
+          <td>10 40계단 · 11 임시수도 기념관 · 12 부산임시수도 정부청사 · 13 UN기념공원 · 14 동아대 석당박물관 · 15 아미동 비석문화마을 · 16 초량 이바구길 · 17 깡깡이마을</td>
+        </tr>
+        <tr>
+          <td><span class="era-pill" style="background:#6C58A4">생활·시장</span><br><small>오늘날 부산</small></td>
+          <td class="count">5개</td>
+          <td>18 국제시장 · 19 구포시장 · 20 영도대교 · 21 태종대 · 22 국립해양박물관</td>
+        </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">4</span>유산 카드 22종 한눈에 보기</h2>
+
+      <section class="era-block">
+        <h3 style="color:#C0473C">
+          <span class="era-pill" style="background:#C0473C">선사·가야</span>
+          <small style="color:#666"> · 오래된 옛날 · 3개</small>
+        </h3>
+        <div class="heritage-list">
+        <div class="heritage" style="border-left-color:#C0473C">
+          <div class="h-num" style="background:#C0473C">01</div>
+          <div class="h-info">
+            <h4>동삼동 패총</h4>
+            <p>바닷가에서 발견된 신석기 사람들이 남긴 조개껍데기 무덤이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#C0473C">
+          <div class="h-num" style="background:#C0473C">02</div>
+          <div class="h-info">
+            <h4>복천동 고분군</h4>
+            <p>가야 사람들이 만든 큰 무덤으로 금관과 토기가 많이 나왔어요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#C0473C">
+          <div class="h-num" style="background:#C0473C">03</div>
+          <div class="h-info">
+            <h4>연산동 고분군</h4>
+            <p>언덕 위에 줄지어 있는 가야 시대의 크고 둥근 무덤들이에요.</p>
+          </div>
+        </div></div>
+      </section>
+      <section class="era-block">
+        <h3 style="color:#2E8B8B">
+          <span class="era-pill" style="background:#2E8B8B">통일신라·고려</span>
+          <small style="color:#666"> · 삼국 통일 이후 · 2개</small>
+        </h3>
+        <div class="heritage-list">
+        <div class="heritage" style="border-left-color:#2E8B8B">
+          <div class="h-num" style="background:#2E8B8B">04</div>
+          <div class="h-info">
+            <h4>범어사</h4>
+            <p>신라 때 지어진 부산에서 가장 크고 오래된 절이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#2E8B8B">
+          <div class="h-num" style="background:#2E8B8B">05</div>
+          <div class="h-info">
+            <h4>만덕사지</h4>
+            <p>고려 시대에 있던 큰 절이 사라지고 터만 남은 곳이에요.</p>
+          </div>
+        </div></div>
+      </section>
+      <section class="era-block">
+        <h3 style="color:#C28A2B">
+          <span class="era-pill" style="background:#C28A2B">조선</span>
+          <small style="color:#666"> · 임진왜란 시대 · 4개</small>
+        </h3>
+        <div class="heritage-list">
+        <div class="heritage" style="border-left-color:#C28A2B">
+          <div class="h-num" style="background:#C28A2B">06</div>
+          <div class="h-info">
+            <h4>동래읍성</h4>
+            <p>조선 시대 동래 사람들을 지키기 위해 쌓은 큰 성이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#C28A2B">
+          <div class="h-num" style="background:#C28A2B">07</div>
+          <div class="h-info">
+            <h4>금정산성</h4>
+            <p>금정산 위에 쌓은 우리나라에서 가장 긴 산성이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#C28A2B">
+          <div class="h-num" style="background:#C28A2B">08</div>
+          <div class="h-info">
+            <h4>충렬사</h4>
+            <p>임진왜란 때 나라를 지키다 돌아가신 분들을 기리는 사당이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#C28A2B">
+          <div class="h-num" style="background:#C28A2B">09</div>
+          <div class="h-info">
+            <h4>부산진성</h4>
+            <p>임진왜란 때 일본군과 처음 싸운 자리에 세운 성이에요.</p>
+          </div>
+        </div></div>
+      </section>
+      <section class="era-block">
+        <h3 style="color:#3E6FA3">
+          <span class="era-pill" style="background:#3E6FA3">근대·전쟁</span>
+          <small style="color:#666"> · 6·25 전쟁 시대 · 8개</small>
+        </h3>
+        <div class="heritage-list">
+        <div class="heritage" style="border-left-color:#3E6FA3">
+          <div class="h-num" style="background:#3E6FA3">10</div>
+          <div class="h-info">
+            <h4>40계단</h4>
+            <p>6·25 때 피란민들이 모여 살던 추억이 담긴 40개의 계단이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#3E6FA3">
+          <div class="h-num" style="background:#3E6FA3">11</div>
+          <div class="h-info">
+            <h4>임시수도 기념관</h4>
+            <p>6·25 때 대통령이 살며 일했던 집을 기념관으로 만든 곳이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#3E6FA3">
+          <div class="h-num" style="background:#3E6FA3">12</div>
+          <div class="h-info">
+            <h4>부산임시수도 정부청사</h4>
+            <p>6·25 때 대한민국 정부가 일했던 붉은 벽돌 건물이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#3E6FA3">
+          <div class="h-num" style="background:#3E6FA3">13</div>
+          <div class="h-info">
+            <h4>UN기념공원</h4>
+            <p>우리를 도와준 UN 군인들이 잠들어 있는 세계 유일의 공원이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#3E6FA3">
+          <div class="h-num" style="background:#3E6FA3">14</div>
+          <div class="h-info">
+            <h4>동아대 석당박물관</h4>
+            <p>옛 임시수도 청사 건물을 박물관으로 쓰는 곳이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#3E6FA3">
+          <div class="h-num" style="background:#3E6FA3">15</div>
+          <div class="h-info">
+            <h4>아미동 비석문화마을</h4>
+            <p>피란민들이 일본인 묘지 비석 위에 집을 지어 만든 마을이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#3E6FA3">
+          <div class="h-num" style="background:#3E6FA3">16</div>
+          <div class="h-info">
+            <h4>초량 이바구길</h4>
+            <p>피란민들의 옛이야기가 남아 있는 산비탈 골목길이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#3E6FA3">
+          <div class="h-num" style="background:#3E6FA3">17</div>
+          <div class="h-info">
+            <h4>깡깡이마을</h4>
+            <p>배 고치는 망치 소리 '깡깡'에서 이름이 붙은 영도의 마을이에요.</p>
+          </div>
+        </div></div>
+      </section>
+      <section class="era-block">
+        <h3 style="color:#6C58A4">
+          <span class="era-pill" style="background:#6C58A4">생활·시장</span>
+          <small style="color:#666"> · 오늘날 부산 · 5개</small>
+        </h3>
+        <div class="heritage-list">
+        <div class="heritage" style="border-left-color:#6C58A4">
+          <div class="h-num" style="background:#6C58A4">18</div>
+          <div class="h-info">
+            <h4>국제시장</h4>
+            <p>피란민들이 모여 장사하며 시작된 부산에서 가장 큰 시장이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#6C58A4">
+          <div class="h-num" style="background:#6C58A4">19</div>
+          <div class="h-info">
+            <h4>구포시장</h4>
+            <p>낙동강 옆에서 오래전부터 열린 부산의 큰 5일장이에요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#6C58A4">
+          <div class="h-num" style="background:#6C58A4">20</div>
+          <div class="h-info">
+            <h4>영도대교</h4>
+            <p>우리나라 최초로 한쪽이 위로 들리는 다리예요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#6C58A4">
+          <div class="h-num" style="background:#6C58A4">21</div>
+          <div class="h-info">
+            <h4>태종대</h4>
+            <p>태종 임금이 다녀갔다고 전해지는 절벽과 등대가 있는 바닷가예요.</p>
+          </div>
+        </div>
+        <div class="heritage" style="border-left-color:#6C58A4">
+          <div class="h-num" style="background:#6C58A4">22</div>
+          <div class="h-info">
+            <h4>국립해양박물관</h4>
+            <p>바다와 배에 관한 모든 것을 볼 수 있는 우리나라 최대 해양박물관이에요.</p>
+          </div>
+        </div></div>
+      </section>
+</section>
+
+<section>
+  <h2><span class="num">5</span>게임 준비</h2>
+  <ol class="steps">
+    <li><strong>카드 섞기</strong> — 유산 카드 44장 + 특수 카드 4장, 모두 48장을 잘 섞어요.</li>
+    <li><strong>격자 만들기</strong> — 그림이 보이지 않게 뒤집어서 <strong>6 × 8</strong> 격자로 펼쳐 놓아요.</li>
+    <li><strong>순서 정하기</strong> — 가위바위보로 순서를 정해요. 가장 어린 사람부터 시작해도 좋아요.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="num">6</span>게임 방법</h2>
+  <ol class="steps">
+    <li><strong>카드 두 장 뒤집기</strong> — 차례가 된 사람은 카드 두 장을 모두에게 보이도록 뒤집어요.</li>
+    <li><strong>같은 유산이면 짝!</strong> — 두 카드의 유산 이름이 같으면 “○○○ 발견!”이라고 외치고, 카드에 적힌 <strong>한 줄 설명을 읽어요</strong>. 그러면 짝을 가져갈 수 있어요.</li>
+    <li><strong>한 번 더!</strong> — 짝을 맞추면 한 번 더 차례를 가져요.</li>
+    <li><strong>다른 유산이면 다시 엎기</strong> — 짝이 아니면 두 장을 다시 같은 자리에 뒤집어 놓고 다음 사람 차례로 넘겨요.</li>
+    <li><strong>특수 카드</strong> — 특수 카드가 나오면 카드에 적힌 효과를 바로 사용해요(자세한 효과는 §8 참고).</li>
+    <li><strong>게임 끝</strong> — 모든 카드를 다 가져가면 게임이 끝나요. 점수를 합산해 승자를 정해요.</li>
+  </ol>
+
+  <div class="tip-box"><strong>💡 도와주기 규칙(선택):</strong> 한 줄 설명을 잘 읽지 못하면 옆 친구가 도와줄 수 있어요. 도움을 받은 짝은 0.5점으로 계산해요.</div>
+</section>
+
+<section>
+  <h2><span class="num">7</span>점수 계산 & 승리 조건</h2>
+  <div class="score-table">
+    <div class="label">유산 짝 1세트</div><div class="pts">+1점</div>
+    <div class="label">같은 시대(같은 색) 짝 3세트 모으기</div><div class="pts">보너스 +2점</div>
+    <div class="label">한 시대를 혼자 모두 모으기 (시대 정복)</div><div class="pts">보너스 +3점</div>
+    <div class="label">시간 여행자 카드 사용</div><div class="pts">보너스 +2점</div>
+    <div class="label">부산 사랑 카드 사용</div><div class="pts">+1점</div>
+    <div class="label">보물 도둑 카드를 뒤집은 사람</div><div class="pts">−1점</div>
+  </div>
+  <p>모든 카드를 다 뒤집은 뒤 점수를 합산해서 <strong>가장 점수가 높은 사람이 승리</strong>해요. 동점이면 모은 짝이 더 많은 사람이 이겨요.</p>
+</section>
+
+<section>
+  <h2><span class="num">8</span>특수 카드 4종</h2>
+  <p>48장 중 4장은 특별한 효과를 가진 특수 카드예요. 잘 활용하면 점수를 더 많이 얻을 수 있어요!</p>
+  <div class="specials-grid">
+        <div class="special-card">
+          <div class="sc-head" style="background:#3A3A3A">
+            <span class="sc-num">23</span>
+            <span class="sc-name">보물 도둑</span>
+            <span class="sc-qty">1장</span>
+          </div>
+          <div class="sc-body">이 카드를 뒤집으면 내 점수에서 1점이 빠져요. 조심하세요!</div>
+        </div>
+        <div class="special-card">
+          <div class="sc-head" style="background:#0F7A3D">
+            <span class="sc-num">24</span>
+            <span class="sc-name">시대 가이드</span>
+            <span class="sc-qty">1장</span>
+          </div>
+          <div class="sc-body">원하는 시대 색깔을 친구에게 한 번 물어볼 수 있어요.</div>
+        </div>
+        <div class="special-card">
+          <div class="sc-head" style="background:#9B27B0">
+            <span class="sc-num">25</span>
+            <span class="sc-name">시간 여행자</span>
+            <span class="sc-qty">1장</span>
+          </div>
+          <div class="sc-body">이미 짝지어진 카드 1장을 가져오고 보너스 2점을 받아요.</div>
+        </div>
+        <div class="special-card">
+          <div class="sc-head" style="background:#D81B60">
+            <span class="sc-num">26</span>
+            <span class="sc-name">부산 사랑</span>
+            <span class="sc-qty">1장</span>
+          </div>
+          <div class="sc-body">어떤 카드와도 짝이 되는 와일드! 원하는 시대 1점을 추가로 받아요.</div>
+        </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">9</span>난이도 조절 옵션</h2>
+  <table>
+    <thead><tr><th>난이도</th><th>규칙 변화</th></tr></thead>
+    <tbody>
+      <tr><td><strong>쉬움</strong></td><td>한 줄 설명 읽기를 면제해요. 짝만 맞으면 인정.</td></tr>
+      <tr><td><strong>기본</strong></td><td>위 규칙 그대로. 한 줄 설명을 또렷이 읽어야 짝 인정.</td></tr>
+      <tr><td><strong>어려움</strong></td><td>한 줄 설명에 더해 그 유산이 어느 <strong>시대</strong>의 것인지 한 가지를 더 말해야 짝 인정.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">10</span>교사·학부모를 위한 팁</h2>
+  <div class="tip-box">
+    <strong>학습 효과 ❶</strong> 같은 시대 카드를 모으는 과정에서 시대 분류 능력이 자연스럽게 길러져요.
+  </div>
+  <div class="tip-box" style="border-left-color: var(--era-D);">
+    <strong>학습 효과 ❷</strong> 한 줄 설명을 입으로 읽으며 유산의 핵심 정보를 반복 학습해요.
+  </div>
+  <div class="tip-box" style="border-left-color: var(--era-E);">
+    <strong>학습 효과 ❸</strong> 게임 후 친구들과 “가장 좋아하는 유산 1가지”를 발표하면 표현·소통 능력이 함께 자라요.
+  </div>
+</section>
+
+<footer>
+  © 부산 보물 탐험대 · 규칙서 v6 · 초등 4학년 사회과 보조 자료
+</footer>
+
+</div>
+</body>
+</html>
